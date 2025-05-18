@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../features/services/authSlice';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { getProducts } from '../features/products/productSlice';
+import Breadcrumbs from './Breadcrumb';
 
 function Header() {
     const [show, setShow] = useState(false);
@@ -57,6 +58,7 @@ function Header() {
     };
 
     return (
+        <>
         <Navbar expand="lg" style={{ backgroundColor: '#003F62' }}>
             <div className="container-fluid">
                 <Navbar.Brand as={Link} to="/" className="text-light" style={{ fontSize: '24px', minWidth: '500px' }}>
@@ -203,6 +205,8 @@ function Header() {
                 </Offcanvas.Body>
             </Offcanvas>
         </Navbar>
+        <Breadcrumbs/>
+        </>
     );
 }
 
