@@ -182,7 +182,7 @@ function Header() {
                                     >
                                         <img
                                             src={fav.product.images?.[0]
-                                                ? `http://localhost:5000/uploads/products/${fav.product.images[0]}`
+                                                ? `https://product-management-i88p.onrender.com/uploads/products/${fav.product.images[0]}`
                                                 : '/placeholder.jpg'}
                                             alt={fav.product?.title || 'Product'}
                                             style={{
