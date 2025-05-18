@@ -189,7 +189,7 @@ function Home() {
                                                 variant="top"
                                                 src={
                                                     product.images && product.images.length > 0
-                                                        ? `http://localhost:5000/uploads/products/${product.images[0]}`
+                                                        ? `https://product-management-i88p.onrender.com/uploads/products/${product.images[0]}`
                                                         : 'https://via.placeholder.com/180'
                                                 }
                                                 className="mx-auto d-block mt-4"
