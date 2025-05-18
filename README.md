@@ -8,7 +8,7 @@
   </a>
 </p>
 
-### ✨ [Demo](https://product-management-i88p.onrender.com)
+### ✨ [Demo](https://product-management-1-2fnq.onrender.com/)
 
 ## Install
 
