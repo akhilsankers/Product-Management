@@ -23,7 +23,7 @@ function Productdetails() {
   useEffect(() => {
     if (product) {
       if (product.images && product.images.length > 0) {
-        setMainImage(`http://localhost:5000/uploads/products/${product.images[0]}`);
+        setMainImage(`https://product-management-i88p.onrender.com/uploads/products/${product.images[0]}`);
       } else {
         setMainImage('');
       }
