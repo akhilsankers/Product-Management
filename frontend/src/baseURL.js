@@ -1,2 +1,2 @@
-const baseUrl = 'http://localhost:5000/api';
+const baseUrl = 'https://product-management-i88p.onrender.com/api';
 export default baseUrl;
