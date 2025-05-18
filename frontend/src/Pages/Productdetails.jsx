@@ -99,7 +99,7 @@ function Productdetails() {
               />
               <div className="d-flex justify-content-start flex-wrap mt-3 gap-2">
                 {(product.images && product.images.length > 0
-                  ? product.images.map((img) => `http://localhost:5000/uploads/products/${img}`)
+                  ? product.images.map((img) => `https://product-management-i88p.onrender.com/uploads/products/${img}`)
                   : []
                 ).map((thumb, index) => (
                   <img
