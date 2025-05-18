@@ -17,7 +17,7 @@ app.use('/uploads/products', express.static(path.join(__dirname, './assets/Produ
 
 
 // Connect to MongoDB
-require('./config/db');
+require('./Config/db')//mongodb connection
 
 // API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
