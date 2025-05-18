@@ -7,7 +7,7 @@ const {
   getProducts,
   getProductById,
   updateProductById
-} = require('../controllers/productController');
+} = require('../controllers/ProductController');
 
 router.post('/', upload.array('images', 5), createProduct);
 router.get('/', getProducts);
