@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../features/services/authSlice'; // adjust path as needed
-import { Button, Container, Row, Col, FloatingLabel, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { signup } from '../features/services/authSlice'; // adjust the path as needed
+import { Button, Container, Row, Col, FloatingLabel, Form, Alert } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import bg from '../assets/bg.png';
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
 
 function Regester() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.auth);
- 
 
   const [formData, setFormData] = useState({
     username: '',
@@ -17,13 +17,22 @@ function Regester() {
     password: '',
   });
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrorMessage(''); // Clear error on input
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signup(formData));
+    try {
+      await dispatch(signup(formData)).unwrap();
+      navigate('/');
+    } catch (err) {
+      console.error("Signup failed:", err);
+      setErrorMessage(err); // Show error in form
+    }
   };
 
   return (
@@ -35,7 +44,7 @@ function Regester() {
             sm={12}
             className="d-flex justify-content-center align-items-center text-light"
             style={{
-              backgroundImage:` url(${bg})`,
+              backgroundImage: `url(${bg})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -55,19 +64,51 @@ function Regester() {
             <Form style={{ width: '100%', maxWidth: '400px' }} onSubmit={handleSubmit}>
               <h1 className="text-center mb-4 fw-bold text-warning">Create your Account</h1>
 
+              {errorMessage && <Alert variant="danger" className="text-center">{errorMessage}</Alert>}
+
               <FloatingLabel controlId="floatingInputName" label={<><CiUser className="m-1" size={22} />Name</>} className="mb-3">
-                <Form.Control type="text" name="username" placeholder="Name" style={{ backgroundColor: '#F4F8F5' }} value={formData.username} onChange={handleChange} required />
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder="Name"
+                  style={{ backgroundColor: '#F4F8F5' }}
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
               </FloatingLabel>
 
               <FloatingLabel controlId="floatingInputEmail" label={<><CiMail className="m-1" size={22} />Email</>} className="mb-3">
-                <Form.Control type="email" name="email" placeholder="name@example.com" style={{ backgroundColor: '#F4F8F5' }} value={formData.email} onChange={handleChange} required />
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  style={{ backgroundColor: '#F4F8F5' }}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
               </FloatingLabel>
 
               <FloatingLabel controlId="floatingInputPassword" label={<><CiLock className="m-1" size={22} />Password</>} className="mb-3">
-                <Form.Control type="password" name="password" placeholder="Password" style={{ backgroundColor: '#F4F8F5' }} value={formData.password} onChange={handleChange} required />
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  style={{ backgroundColor: '#F4F8F5' }}
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
               </FloatingLabel>
+
               <div className="d-flex justify-content-center mt-4">
-                <Button type="submit" className="rounded-5 px-5 py-2 text-light fw-bold" variant="warning" disabled={isLoading}>
+                <Button
+                  type="submit"
+                  className="rounded-5 px-5 py-2 text-light fw-bold"
+                  variant="warning"
+                  disabled={isLoading}
+                >
                   {isLoading ? 'Signing up...' : 'Sign up'}
                 </Button>
               </div>
