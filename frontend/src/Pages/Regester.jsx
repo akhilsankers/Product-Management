@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 import bg from '../assets/bg.png';
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
 import Login from './Login';
+import { useNavigate } from 'react-router-dom';
 
 function Regester() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
- 
+ const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     username: '',
@@ -25,7 +27,7 @@ function Regester() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(signup(formData));
-    <Login/>
+    navigate('/login');
   };
 
   return (
@@ -37,7 +39,7 @@ function Regester() {
             sm={12}
             className="d-flex justify-content-center align-items-center text-light"
             style={{
-              backgroundImage: `url(${bg})`,
+              backgroundImage:` url(${bg})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
