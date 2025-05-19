@@ -5,7 +5,6 @@ import { Button, Container, Row, Col, FloatingLabel, Form } from 'react-bootstra
 import { Link } from 'react-router-dom';
 import bg from '../assets/bg.png';
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
-import Login from './Login';
 
 function Regester() {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ function Regester() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(signup(formData));
-    <Login/>
   };
 
   return (
